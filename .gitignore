@@ -1,0 +1,7 @@
+node_modules
+cypress/fixtures/
+cypress/downloads/
+cypress/integration/1-getting-started/
+cypress/integration/2-advanced-examples/*.spec.js
+cypress/support/
+
