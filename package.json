@@ -2,14 +2,15 @@
   "name": "function",
   "version": "1.0.0",
   "description": "aqa task",
-  "main": "./cypress/integration/cypressTests.js",
+  "main": "./cypress/integration/testingWebTables.js",
   "scripts": {
     "test": ""
   },
   "author": "AQA team",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^9.4.1"
+    "cypress": "^9.4.1",
+    "mocha": "^9.2.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^6.0.0-alpha.5"
