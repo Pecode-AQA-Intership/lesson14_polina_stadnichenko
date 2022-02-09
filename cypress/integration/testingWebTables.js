@@ -1,22 +1,8 @@
-import { faker } from '@faker-js/faker';
-// import { it } from 'mocha';
-// import { describe } from 'mocha';
+import * as fakeData from "./variables.js"
+import * as sort from "./sorting.js"
+import { getInnerText, getNumbers } from "./getCellsData.js"
 
-const USER_FIRST_NAME = faker.name.firstName();
-const USER_LAST_NAME = faker.name.lastName();
-const USER_EMAIL = faker.internet.email();
-const USER_AGE = Math.floor(Math.random() * (60 - 18 + 1)) + 18;
-const USER_SALARY = Math.floor(Math.random() * (5000 - 100 + 1)) + 100;
-const USER_DEPARTMENT = "department";
-
-const EDIT_USER_FIRST_NAME = faker.name.firstName();
-const EDIT_USER_LAST_NAME = faker.name.lastName();
-const EDIT_USER_EMAIL = faker.internet.email();
-const EDIT_USER_AGE = Math.floor(Math.random() * (60 - 18 + 1)) + 18;
-const EDIT_USER_SALARY = Math.floor(Math.random() * (5000 - 100 + 1)) + 100;
-const EDIT_USER_DEPARTMENT = "Finance";
-
-describe("Testing of Web Tables page", () =>{
+describe("Testing of Web Tables page", () => {
 // 1. Create a new user and verify that user was added
     before(() =>{
         cy.visit("/webtables")
@@ -26,38 +12,37 @@ describe("Testing of Web Tables page", () =>{
         cy.get(".modal-content").should("be.visible")
 
         cy.get("#firstName").click()
-        .type(USER_FIRST_NAME)
-        .should("have.value", USER_FIRST_NAME)
+        .type(fakeData.USER_FIRST_NAME)
+        .should("have.value", fakeData.USER_FIRST_NAME)
 
         cy.get("#lastName").click()
-        .type(USER_LAST_NAME)
-        .should("have.value", USER_LAST_NAME)
+        .type(fakeData.USER_LAST_NAME)
+        .should("have.value", fakeData.USER_LAST_NAME)
 
         cy.get("#userEmail").click()
-        .type(USER_EMAIL)
-        .should("have.value", USER_EMAIL)
+        .type(fakeData.USER_EMAIL)
+        .should("have.value", fakeData.USER_EMAIL)
 
         cy.get("#age").click()
-        .type(USER_AGE)
-        .should("have.value", USER_AGE)
+        .type(fakeData.USER_AGE)
+        .should("have.value", fakeData.USER_AGE)
 
         cy.get("#salary").click()
-        .type(USER_SALARY)
-        .should("have.value", USER_SALARY)
+        .type(fakeData.USER_SALARY)
+        .should("have.value", fakeData.USER_SALARY)
 
         cy.get("#department").click()
-        .type(USER_DEPARTMENT)
-        .should("have.value", USER_DEPARTMENT)
+        .type(fakeData.USER_DEPARTMENT)
+        .should("have.value", fakeData.USER_DEPARTMENT)
 
         cy.get("#submit").click()
-        //cy.get(".modal-content").should("not.be.visible")
 
-        cy.get(".rt-tbody").should("include.text", USER_FIRST_NAME)
-        .and("include.text", USER_LAST_NAME)
-        .and("include.text", USER_EMAIL)
-        .and("include.text", USER_AGE)
-        .and("include.text", USER_SALARY)
-        .and("include.text", USER_DEPARTMENT)
+        cy.get(".rt-tbody").should("include.text", fakeData.USER_FIRST_NAME)
+        .and("include.text", fakeData.USER_LAST_NAME)
+        .and("include.text", fakeData.USER_EMAIL)
+        .and("include.text", fakeData.USER_AGE)
+        .and("include.text", fakeData.USER_SALARY)
+        .and("include.text", fakeData.USER_DEPARTMENT)
     })
 
     // 2. Edit user and check that each field is editable
@@ -67,42 +52,42 @@ describe("Testing of Web Tables page", () =>{
 
         cy.get("#firstName").click().clear()
         .should("be.empty")
-        .type(EDIT_USER_FIRST_NAME)
-        .should("have.value", EDIT_USER_FIRST_NAME)
+        .type(fakeData.EDIT_USER_FIRST_NAME)
+        .should("have.value", fakeData.EDIT_USER_FIRST_NAME)
 
         cy.get("#lastName").click().clear()
         .should("be.empty")
-        .type(EDIT_USER_LAST_NAME)
-        .should("have.value", EDIT_USER_LAST_NAME)
+        .type(fakeData.EDIT_USER_LAST_NAME)
+        .should("have.value", fakeData.EDIT_USER_LAST_NAME)
 
         cy.get("#userEmail").click().clear()
         .should("be.empty")
-        .type(EDIT_USER_EMAIL)
-        .should("have.value", EDIT_USER_EMAIL)
+        .type(fakeData.EDIT_USER_EMAIL)
+        .should("have.value", fakeData.EDIT_USER_EMAIL)
 
         cy.get("#age").click().clear()
         .should("be.empty")
-        .type(EDIT_USER_AGE)
-        .should("have.value", EDIT_USER_AGE)
+        .type(fakeData.EDIT_USER_AGE)
+        .should("have.value", fakeData.EDIT_USER_AGE)
 
         cy.get("#salary").click().clear()
         .should("be.empty")
-        .type(EDIT_USER_SALARY)
-        .should("have.value", EDIT_USER_SALARY)
+        .type(fakeData.EDIT_USER_SALARY)
+        .should("have.value", fakeData.EDIT_USER_SALARY)
 
         cy.get("#department").click().clear()
         .should("be.empty")
-        .type(EDIT_USER_DEPARTMENT)
-        .should("have.value", EDIT_USER_DEPARTMENT)
+        .type(fakeData.EDIT_USER_DEPARTMENT)
+        .should("have.value", fakeData.EDIT_USER_DEPARTMENT)
 
         cy.get("#submit").click()
 
-        cy.get(".rt-tbody").should("include.text", EDIT_USER_FIRST_NAME)
-        .and("include.text", EDIT_USER_LAST_NAME)
-        .and("include.text", EDIT_USER_EMAIL)
-        .and("include.text", EDIT_USER_AGE)
-        .and("include.text", EDIT_USER_SALARY)
-        .and("include.text", EDIT_USER_DEPARTMENT)
+        cy.get(".rt-tbody").should("include.text", fakeData.EDIT_USER_FIRST_NAME)
+        .and("include.text", fakeData.EDIT_USER_LAST_NAME)
+        .and("include.text", fakeData.EDIT_USER_EMAIL)
+        .and("include.text", fakeData.EDIT_USER_AGE)
+        .and("include.text", fakeData.EDIT_USER_SALARY)
+        .and("include.text", fakeData.EDIT_USER_DEPARTMENT)
     })
 
     //3. Delete user from the table and check that user was deleted
@@ -114,9 +99,160 @@ describe("Testing of Web Tables page", () =>{
     // 4. Check searching feature, check that appropriate user can be searched by each field
     it("Check the searching functionality", () => {
         cy.get("#searchBox").click()
-        .type(EDIT_USER_FIRST_NAME)
-        .should("have.value", EDIT_USER_FIRST_NAME)
-        cy.get(".rt-tbody").should("include.text", EDIT_USER_FIRST_NAME)
+        .type(fakeData.EDIT_USER_FIRST_NAME)
+        .should("have.value", fakeData.EDIT_USER_FIRST_NAME)
+        cy.get(".rt-tbody").should("include.text", fakeData.EDIT_USER_FIRST_NAME)
+        
+        cy.get("#searchBox").clear()
+        .type(fakeData.EDIT_USER_LAST_NAME)
+        .should("have.value", fakeData.EDIT_USER_LAST_NAME)
+        cy.get(".rt-tbody").should("include.text", fakeData.EDIT_USER_LAST_NAME)
+        
+        cy.get("#searchBox").clear()
+        .type(fakeData.EDIT_USER_AGE)
+        .should("have.value", fakeData.EDIT_USER_AGE)
+        cy.get(".rt-tbody").should("include.text", fakeData.EDIT_USER_AGE)
+
+        cy.get("#searchBox").clear()
+        .type(fakeData.EDIT_USER_EMAIL)
+        .should("have.value", fakeData.EDIT_USER_EMAIL)
+        cy.get(".rt-tbody").should("include.text", fakeData.EDIT_USER_EMAIL)
+
+        cy.get("#searchBox").clear()
+        .type(fakeData.EDIT_USER_SALARY)
+        .should("have.value", fakeData.EDIT_USER_SALARY)
+        cy.get(".rt-tbody").should("include.text", fakeData.EDIT_USER_SALARY)
+
+        cy.get("#searchBox").clear()
+        .type(fakeData.EDIT_USER_DEPARTMENT)
+        .should("have.value", fakeData.EDIT_USER_DEPARTMENT)
+        cy.get(".rt-tbody").should("include.text", fakeData.EDIT_USER_DEPARTMENT)
+        cy.get("#searchBox").clear()
+    })
+
+    // 5. Sorting
+    it("Check the ability to sort the table by first names ascending and descending", () => {
+        cy.get(".rt-th:nth-child(1)").click()
+        cy.get(".rt-th:nth-child(1)").should("have.class", "-sort-asc")
+        cy.get(".rt-tr-group .rt-td:nth-child(1)")
+        .then(getInnerText)
+        .then((firstNames) => {
+          let sortedFirstNames = sort.stringSortASC(firstNames);
+          expect(firstNames).to.deep.equal(sortedFirstNames);
+        })
+
+        cy.get(".rt-th:nth-child(1)").click()
+        cy.get(".rt-th:nth-child(1)").should("have.class", "-sort-desc")
+        cy.get(".rt-tr-group .rt-td:nth-child(1)")
+        .then(getInnerText)
+        .then((firstNames) => {
+          let sortedFirstNames = sort.stringSortDESC(firstNames);
+          expect(firstNames).to.deep.equal(sortedFirstNames);
+        })
+    })
+
+    it ("Check the ability to sort the table by last names ascending and descending", () => {
+        cy.get(".rt-th:nth-child(2)").click()
+        cy.get(".rt-th:nth-child(2)").should("have.class", "-sort-asc")
+        cy.get(".rt-tr-group .rt-td:nth-child(2)")
+        .then(getInnerText)
+        .then((lastNames) => {
+          let sortedLastNames = sort.stringSortASC(lastNames);
+          expect(lastNames).to.deep.equal(sortedLastNames);
+        })
+
+        cy.get(".rt-th:nth-child(2)").click()
+        cy.get(".rt-th:nth-child(2)").should("have.class", "-sort-desc")
+        cy.get(".rt-tr-group .rt-td:nth-child(2)")
+        .then(getInnerText)
+        .then((lastNames) => {
+          let sortedLastNames = sort.stringSortDESC(lastNames);
+          expect(lastNames).to.deep.equal(sortedLastNames);
+        })
+    })
+
+    it("Check the ability to sort the table by age ascending and descending", () => {
+        cy.get(".rt-th:nth-child(3)").click()
+        cy.get(".rt-th:nth-child(3)").should("have.class", "-sort-asc")
+        cy.get(".rt-tr-group .rt-td:nth-child(3)")
+        .then(getInnerText)
+        .then(getNumbers)
+        .then((ages) => {
+          let sortedAges = sort.numberSortASC(ages);
+          expect(ages).to.deep.equal(sortedAges);
+        })
+
+        cy.get(".rt-th:nth-child(3)").click()
+        cy.get(".rt-th:nth-child(3)").should("have.class", "-sort-desc")
+        cy.get(".rt-tr-group .rt-td:nth-child(3)")
+        .then(getInnerText)
+        .then(getNumbers)
+        .then((ages) => {
+          let sortedAges = sort.numberSortDESC(ages);
+          expect(ages).to.deep.equal(sortedAges);
+        })
+    })
+
+    it("Check the ability to sort the table by email ascending and descending", () => {
+        cy.get(".rt-th:nth-child(4)").click()
+        cy.get(".rt-th:nth-child(4)").should("have.class", "-sort-asc")
+        cy.get(".rt-tr-group .rt-td:nth-child(4)")
+        .then(getInnerText)
+        .then((emails) => {
+          let sortedEmails = sort.stringSortASC(emails);
+          expect(emails).to.deep.equal(sortedEmails);
+        })
+
+        cy.get(".rt-th:nth-child(4)").click()
+        cy.get(".rt-th:nth-child(4)").should("have.class", "-sort-desc")
+        cy.get(".rt-tr-group .rt-td:nth-child(4)")
+        .then(getInnerText)
+        .then((emails) => {
+          let sortedEmails = sort.stringSortDESC(emails);
+          expect(emails).to.deep.equal(sortedEmails);
+        })
+    })
+
+    it("Check the ability to sort the table by salary ascending and descending", () => {
+        cy.get(".rt-th:nth-child(5)").click()
+        cy.get(".rt-th:nth-child(5)").should("have.class", "-sort-asc")
+        cy.get(".rt-tr-group .rt-td:nth-child(5)")
+        .then(getInnerText)
+        .then(getNumbers)
+        .then((ages) => {
+          let sortedAges = sort.numberSortASC(ages);
+          expect(ages).to.deep.equal(sortedAges);
+        })
+
+        cy.get(".rt-th:nth-child(5)").click()
+        cy.get(".rt-th:nth-child(5)").should("have.class", "-sort-desc")
+        cy.get(".rt-tr-group .rt-td:nth-child(5)")
+        .then(getInnerText)
+        .then(getNumbers)
+        .then((ages) => {
+          let sortedAges = sort.numberSortDESC(ages);
+          expect(ages).to.deep.equal(sortedAges);
+        })
+    })
+
+    it("Check the ability to sort the table by department ascending and descending", () => {
+        cy.get(".rt-th:nth-child(6)").click()
+        cy.get(".rt-th:nth-child(6)").should("have.class", "-sort-asc")
+        cy.get(".rt-tr-group .rt-td:nth-child(6)")
+        .then(getInnerText)
+        .then((departments) => {
+          let sortedDepartments = sort.stringSortASC(departments);
+          expect(departments).to.deep.equal(sortedDepartments);
+        })
+
+        cy.get(".rt-th:nth-child(6)").click()
+        cy.get(".rt-th:nth-child(6)").should("have.class", "-sort-desc")
+        cy.get(".rt-tr-group .rt-td:nth-child(6)")
+        .then(getInnerText)
+        .then((departments) => {
+          let sortedDepartments = sort.stringSortDESC(departments);
+          expect(departments).to.deep.equal(sortedDepartments);
+        })
     })
 })
 
