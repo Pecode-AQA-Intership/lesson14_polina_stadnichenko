@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "aqa task",
   "main": "./cypress/integration/testingWebTables.js",
+  "type": "module",
   "scripts": {
     "test": ""
   },
