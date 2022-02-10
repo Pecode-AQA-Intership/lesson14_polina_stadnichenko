@@ -23,3 +23,4 @@ export const SORT_SALARY = ".rt-th:nth-child(5)";
 export const COLUMN_SALARY = ".rt-tr-group .rt-td:nth-child(5)";
 export const SORT_DEPARTMENTS = ".rt-th:nth-child(6)";
 export const COLUMN_DEPARTMENTS = ".rt-tr-group .rt-td:nth-child(6)";
+export const SORT_ACTION = ".rt-th:nth-child(7)";

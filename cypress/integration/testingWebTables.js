@@ -255,5 +255,12 @@ describe("Testing of Web Tables page", () => {
           expect(departments).to.deep.equal(sortedDepartments);
         })
     })
+
+    it ("Verify that Action column isn't sortable", () => {
+      cy.get(selectors.SORT_ACTION).click()
+      .should("not.have.class", "-sort-asc")
+      cy.get(selectors.SORT_ACTION).click()
+      .should("not.have.class", "-sort-desc")
+    })
 })
 
