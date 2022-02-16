@@ -1,6 +1,13 @@
 import * as locators from "./locators.js";
 import * as fakeData from "./userData.js";
-import { inputUserData, chooseGender, chooseHobby, inputUserSubjects } from "./functions.js";
+import { 
+    inputUserData, 
+    chooseGender, 
+    chooseHobby, 
+    inputUserSubjects, 
+    verifyValidInputData,
+    verifySubmitCorrectData 
+} from "./functions.js";
 
 describe("Testing the Practice Form", () => {
     before(() => {
@@ -45,11 +52,9 @@ describe("Testing the Practice Form", () => {
         cy.get(locators.DATE_OF_BIRTH).should("have.value", "13 Jan 1999")
     })
 
-    // it("Check if user can enter subjects", () => {
-    //     cy.get(locators.SUBJECTS).click()
-    //     .type("math")
-    //     cy.get(locators.SELECT_SUBJECT).first().click()
-    // })
+    it("Check if user can select subjects", () => {
+        inputUserSubjects(locators.SUBJECTS)
+    })
 
     it("Check if user can select hobbies", () => {
         chooseHobby(locators.HOBBIES_SPORTS, locators.HOBBIES_READING, locators.HOBBIES_MUSIC, locators.HOBBIES_CHECKED)
@@ -63,9 +68,40 @@ describe("Testing the Practice Form", () => {
         inputUserData(locators.CURRENT_ADDRESS, fakeData.USER_CURRENT_ADDRESS)
     })
 
-    // it("Check if user can select a state", () => {
-    //     cy.get(locators.SELECT_STATE).click()
-    //     cy.get(locators.STATE_LIST)
-    // })
+    it("Check if user can select a state", () => {
+        cy.get(locators.SELECT_STATE).click()
+        .type("Har{enter}")
+        .should("contain", "Haryana")
+    })
+
+    it("Check if user can select a city", () => {
+        cy.get(locators.SELECT_CITY).click()
+        .type("kar{enter}")
+        .should("contain", "Karnal")
+    })
+
+    it("Verify the functionality of Submit button", () => {
+        cy.get(locators.SUBMIT_BUTTON).click()
+
+        verifySubmitCorrectData(1, `${fakeData.USER_FIRST_NAME} ${fakeData.USER_LAST_NAME}`);
+        verifySubmitCorrectData(2, fakeData.USER_EMAIL);
+        verifySubmitCorrectData(3, "Other");
+        verifySubmitCorrectData(4, fakeData.USER_MOBILE_NUMBER);
+        verifySubmitCorrectData(5, "13 January,1999");
+        verifySubmitCorrectData(6, "Maths, Biology");
+        verifySubmitCorrectData(7, "Sports, Reading, Music");
+        verifySubmitCorrectData(8, "7OVUSJo.png");
+        verifySubmitCorrectData(9, fakeData.USER_CURRENT_ADDRESS);
+        verifySubmitCorrectData(10, "Haryana Karnal");
+    })
+
+    it("Verify that all data are valid", () => {
+        verifyValidInputData(locators.FIRST_NAME);
+        verifyValidInputData(locators.LAST_NAME);
+        verifyValidInputData(locators.EMAIL);
+        verifyValidInputData(locators.MOBILE_NUMBER);
+        verifyValidInputData(locators.DATE_OF_BIRTH);
+        verifyValidInputData(locators.CURRENT_ADDRESS);
+    })
 
 })
