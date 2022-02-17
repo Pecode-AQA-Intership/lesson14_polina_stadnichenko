@@ -1,19 +1,20 @@
 {
-  "name": "function",
+  "name": "lesson16_polina_stadnichenko",
   "version": "1.0.0",
-  "description": "aqa task",
-  "main": "./cypress/integration/practiceForm.spec.js",
-  "type": "module",
+  "description": "You can find test file in cypress/integration/practiceForm.spec.js",
+  "main": "index.js",
+  
   "scripts": {
-    "test": ""
-  },
-  "author": "AQA team",
-  "license": "ISC",
-  "dependencies": {
-    "mocha": "^9.2.0"
+    "test:debug": "cypress open",
+    "test:headed":"cypress run"
   },
   "devDependencies": {
     "@faker-js/faker": "^6.0.0-alpha.5",
-    "cypress": "^9.5.0"
-  }
+    "cypress": "^9.5.0",
+    "mocha": "^9.2.0"
+   },
+  
+  "author": "Polina Stadnichenko",
+  "license": "ISC"
+  
 }
