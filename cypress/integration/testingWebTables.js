@@ -1,10 +1,9 @@
-import * as fakeData from "./variables.js"
-import * as sort from "./sorting.js"
-import { getInnerText, getNumbers } from "./getCellsData.js"
-import * as selectors from "./selectors.js"
+import * as fakeData from "../fixtures/variables.js"
+import * as sort from "../fixtures/sorting.js"
+import { getInnerText, getNumbers } from "../fixtures/getCellsData.js"
+import * as selectors from "../fixtures/selectors.js"
 
 describe("Testing of Web Tables page", () => {
-// 1. Create a new user and verify that user was added
     before(() =>{
         cy.visit("/webtables")
     })
@@ -46,7 +45,6 @@ describe("Testing of Web Tables page", () => {
         .and("include.text", fakeData.USER_DEPARTMENT)
     })
 
-    // 2. Edit user and check that each field is editable
     it("Check the functionality of editing an existed user", () => {
         cy.get(selectors.EDIT_BUTTON).click()
         cy.get(selectors.POP_UP_FORM).should("be.visible")
@@ -91,13 +89,11 @@ describe("Testing of Web Tables page", () => {
         .and("include.text", fakeData.EDIT_USER_DEPARTMENT)
     })
 
-    //3. Delete user from the table and check that user was deleted
     it("Check the functionality of deleting user", () => {
         cy.get(selectors.DELETE_BUTTON).click()
         cy.get(selectors.TABLE).should("not.include.text", "Cierra")
     })
 
-    // 4. Check searching feature, check that appropriate user can be searched by each field
     it("Check the searching functionality", () => {
         cy.get(selectors.SEARCH).click()
         .type(fakeData.EDIT_USER_FIRST_NAME)
@@ -131,7 +127,6 @@ describe("Testing of Web Tables page", () => {
         cy.get(selectors.SEARCH).clear()
     })
 
-    // 5. Sorting
     it("Check the ability to sort the table by first names ascending and descending", () => {
         cy.get(selectors.SORT_FIRST_NAMES).click()
         .should("have.class", "-sort-asc")
