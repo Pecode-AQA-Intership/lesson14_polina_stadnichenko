@@ -1,0 +1,9 @@
+export const USER_NAME = "#userName";
+export const USER_EMAIL = "#userEmail";
+export const USER_CURRENT_ADDRESS = "#currentAddress";
+export const USER_PERMANENT_ADDRESS = "#permanentAddress";
+export const SUBMIT_BUTTON = "#submit";
+export const SUBMIT_NAME = "p#name";
+export const SUBMIT_EMAIL = "p#email";
+export const SUBMIT_CURRENT_ADDRESS = "p#currentAddress";
+export const SUBMIT_PERMANENT_ADDRESS = "p#permanentAddress";
